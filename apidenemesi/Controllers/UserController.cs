@@ -43,7 +43,6 @@ namespace apidenemesi.Controllers
 
         }
         [HttpPost("api/User/add")]
-        [Authorize]
         public ActionResult<User> AddUser(User user)
         {
             if (_userservice.IsUsernameTaken(user.username))
@@ -52,7 +51,7 @@ namespace apidenemesi.Controllers
             }
              Token token=TokenHand.CreateToken(_configuration);
             _userservice.AddUser(user);
-            return Ok(token);
+            return Ok("Ekleme İşlemi Başarılı" + user);
         }
 
         [HttpPost("api/User/update")]
@@ -65,7 +64,7 @@ namespace apidenemesi.Controllers
                 return NotFound();
             }
             _userservice.UpdateUser(id, user);
-            return Ok(user);
+            return Ok("Güncelleme İşlemi Başarılı"+user);
         }
 
         [HttpPost("api/User/delete")]
@@ -78,7 +77,7 @@ namespace apidenemesi.Controllers
                 return NotFound();
             }
             _userservice.DeleteUser(id);
-            return Ok();
+            return Ok("Silme İşlemi Başarılı");
         }
     }
 

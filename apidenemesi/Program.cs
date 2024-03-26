@@ -60,7 +60,7 @@ internal class Program
         // Database ve User servislerini ekleyin
         builder.Services.AddTransient<IDatabaseService, DatabaseService>();
         builder.Services.AddScoped<UserService>();
-
+        builder.Services.AddScoped<CategoryService>();
         var app = builder.Build();
 
         // Middleware Pipeline Yapýlandýrmasý
